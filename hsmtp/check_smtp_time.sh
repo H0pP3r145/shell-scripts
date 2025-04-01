@@ -5,9 +5,9 @@ if [ -z "$1" ]; then
     exit 1
 fi
 
-EMAIL="$1"  # Получаем email из аргумента
-DOMAIN="${EMAIL#*@}"  # Извлекаем домен
-MX_SERVERS=($(nslookup -type=mx $DOMAIN | awk '/mail exchanger/ {print $NF}' | sort))  # Получаем все MX-серверы
+EMAIL="$1" 
+DOMAIN="${EMAIL#*@}"  
+MX_SERVERS=($(nslookup -type=mx $DOMAIN | awk '/mail exchanger/ {print $NF}' | sort))  
 
 if [ ${#MX_SERVERS[@]} -eq 0 ]; then
     echo "Не удалось найти MX-серверы для $DOMAIN"
@@ -20,12 +20,12 @@ echo "--------------------------------------------------"
 for MX_SERVER in "${MX_SERVERS[@]}"; do
     echo -n "$MX_SERVER: "
 
-    START_TIME=$(date +%s%N)  # Фиксируем время начала
+    START_TIME=$(date +%s%N)
 
     RESPONSE=$(echo -e "HELO example.com\r\nMAIL FROM:<check@example.com>\r\nRCPT TO:<$EMAIL>\r\nQUIT\r\n" | nc -w 5 "$MX_SERVER" 25 2>/dev/null)
 
-    END_TIME=$(date +%s%N)  # Фиксируем время завершения
-    DURATION=$(( (END_TIME - START_TIME) / 1000000 ))  # Время в миллисекундах
+    END_TIME=$(date +%s%N) 
+    DURATION=$(( (END_TIME - START_TIME) / 1000000 ))
 
     if echo "$RESPONSE" | grep -q "250"; then
         RESULT="Email существует"
