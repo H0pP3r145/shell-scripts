@@ -1,6 +1,6 @@
 # HDkim
 
-##№ 🔧 Установка
+### 🔧 Установка
 
 ```bash
 git clone https://github.com/H0pP3r145/hdkim.git
