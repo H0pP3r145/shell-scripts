@@ -1,0 +1,14 @@
+# bash completion for hdkim
+_hdkim()
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    opts="--generate-private --generate-public --show-public --show-dkim --key=[path] --pub-out=[file] --size=[bits] --help "
+
+    if [[ ${cur} == -* ]]; then
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+        return 0
+    fi
+}
+complete -F _hdkim hdkim

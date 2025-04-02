@@ -1,0 +1,11 @@
+#compdef hdkim
+
+_arguments -s \
+  '--generate-private[Generate private key]' \
+  '--generate-public[Generate public key]' \
+  '--show-public[Show public key]' \
+  '--show-dkim[Show DKIM DNS record]' \
+  '--key[Path to private key file]:path' \
+  '--pub-out[Output file for public key]:file' \
+  '--size[Key size (1024, 2048, 4096)]:bits' \
+  '--help[Show help]' \
