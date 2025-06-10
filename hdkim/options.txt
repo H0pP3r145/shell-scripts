@@ -1,0 +1,8 @@
+--generate-private:Generate private key
+--generate-public:Generate public key
+--show-public:Show public key
+--show-dkim:Show DKIM DNS record
+--key=[path]:Path to private key file
+--pub-out=[file]:Output file for public key
+--size=[bits]:Key size (1024, 2048, 4096)
+--help:Show help
